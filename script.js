@@ -2,12 +2,15 @@ let turn = 0;
 
 const gameBoard =  (() => {
     const gameTurn = () => {
-        if (turn == 0) {
+        if (turn == 9) {
+            console.log("End of game");
+        }
+        else if (turn % 2 == 0) {
             turn++;
             return human.token;
         }
-        else if (turn == 1) {
-            turn--;
+        else if (turn % 2 == 1) {
+            turn++;
             return computer.token;
         }
     };
@@ -24,7 +27,14 @@ computer = player("O");
 let gameTiles = document.querySelectorAll(".game-tile");
 gameTiles.forEach( function(div) {
     div.addEventListener("click", function() {
-        console.log("A");
         div.innerHTML = gameBoard.gameTurn();
+    });
+});
+
+const resetButton = document.getElementById("reset");
+resetButton.addEventListener("click", function() {
+    turn = 0;
+    gameTiles.forEach( function(div) {
+        div.innerHTML = "";
     });
 });
