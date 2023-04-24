@@ -18,3 +18,7 @@
     width: 40px;
     z-index: 1;
 }
+
+.game-tile:after {
+    content: "\200B";
+}
