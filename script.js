@@ -1,10 +1,11 @@
+let turn = 0;
+
 const gameBoard =  (() => {
-    const choice = () => 1+1; // filler
+    const choice = (input) => input;
 })();
 
-const player = (input) => {
-    let turn = 0;
-
+const player = (token) => {
+    return {token};
     /*
     if (turn == 0) {
         // X on square method
@@ -17,9 +18,24 @@ const player = (input) => {
     */
 };
 
+human = player("X");
+computer = player("O");
+
+function gameTurn () {
+    if (turn == 0) {
+        turn++;
+        return human.token;
+    }
+    else if (turn == 1) {
+        turn--;
+        return computer.token;
+    }
+}
+
 let gameTiles = document.querySelectorAll(".game-tile");
 gameTiles.forEach( function(div) {
     div.addEventListener("click", function() {
         console.log("A");
+        div.innerHTML = gameTurn();
     });
 });
